@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Learntogether</string>
+
+    <string name="type">type</string>
+
+    <string name="radiomale">Male</string>
+    <string name="radiofemale">Female</string>
+
+    <string-array name="usertype">
+        <item>Tutor</item>
+        <item>Student</item>
+    </string-array>
+
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Urdu</item>
+        <item>Pashtoo</item>
+        <item>Sindhi</item>
+        <item>Punjabi</item>
+        <item>Balochi</item>
+        <item>Seiraiki</item>
+    </string-array>
+
+
+    <string name="title_activity_signupteacher">Signupteacher</string>
+    <string name="title_activity_signupstudent">Signupstudent</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_recommendation">Recommendation</string>
+
+</resources>
