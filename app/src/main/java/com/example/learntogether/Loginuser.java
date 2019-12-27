@@ -1,14 +1,21 @@
 package com.example.learntogether;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Loginuser extends AppCompatActivity {
 
+    private static final int RESULT_CODE =100 ;
     ImageView imgsetting,imgmessage,imgmytutor,imgfindtutor,
             imgrecommend,imgclassroom,imginvite,imgshare,imgupdate,imglocation,imgplanandpricing;
    private Intent intent;
@@ -26,7 +33,7 @@ public class Loginuser extends AppCompatActivity {
         imgrecommend=(ImageView)findViewById(R.id.recommended);
 
 
-        imgshare=(ImageView)findViewById(R.id.share);
+        //imgshare=(ImageView)findViewById(R.id.share);
         imgupdate=(ImageView)findViewById(R.id.update);
         imglocation=(ImageView)findViewById(R.id.Location);
         imgplanandpricing=(ImageView)findViewById(R.id.planandpricing);
@@ -52,12 +59,12 @@ public class Loginuser extends AppCompatActivity {
             }
         });
         
-        imgshare.setOnClickListener(new View.OnClickListener() {
+     /*   imgshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Share();
             }
-        });
+        });*/
         
 
         imginvite.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +172,43 @@ public class Loginuser extends AppCompatActivity {
     {
         Toast.makeText(this, "Can Share On Social Media....", Toast.LENGTH_SHORT).show();
         intent = new Intent(this,Share.class);
-        startActivity(intent);
+       // startActivity(intent);
+    }
+
+    public void ShareAppwithusers(View view) {
+        Toast.makeText(this, "InIntent share through this ", Toast.LENGTH_SHORT).show();
+        Intent intent = new AppInviteInvitation.IntentBuilder("Inivtation Tilte")
+                .setMessage("Hey!! Install This App")
+                .setDeepLink(Uri.parse("https://www.google.com/"))
+                .setCallToActionText("Invitation CTA")
+                .build();
+        startActivityForResult(intent, RESULT_CODE);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("CheckResult", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+
+        if(resultCode==RESULT_CODE)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                String [] ids = AppInviteInvitation.getInvitationIds(requestCode,data);
+
+                for(String id : ids)
+                {
+                    //System.out.println("MainActivity.onActivityResult"+id);
+                    Log.d("Check", "onActivityResult: "+id);
+                }
+            }
+            else
+            {
+
+                Toast.makeText(this, "Failed To Invite Users...", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
     }
 }

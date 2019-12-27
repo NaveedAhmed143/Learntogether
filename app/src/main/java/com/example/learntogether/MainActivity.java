@@ -2,11 +2,10 @@ package com.example.learntogether;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,8 +17,17 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
+    public static final String FILE_NAME ="My_File" ;
+    //    SharedPreferences.Editor editor = getSharedPreferences(FILE_NAME,MODE_PRIVATE).edit();
+
+
+    // SharedPreferences preferences = getSharedPreferences(FILE_NAME,MODE_PRIVATE);
+    //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    //SharedPreferences.Editor editor = preferences.edit();
     int usertypee;
     //Dbclass connect;
     Button login,signup;
@@ -28,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
     Dbclass getConnect;
     private Spinner spinget;
     ProgressDialog progressDialog;
+   String testing="ali@gmail.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         progressDialog=new ProgressDialog(this);
         spinget=(Spinner)findViewById(R.id.spintype);
@@ -126,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(usertypee==2)
                 {
+                    SharedPreferences sharedPreferences = getSharedPreferences(FILE_NAME,MODE_PRIVATE);
+                    SharedPreferences.Editor editor = getSharedPreferences(MainActivity.FILE_NAME,MODE_PRIVATE).edit();
+
                     query=" select * from students";
                     Statement stmt = con.createStatement();
                     ResultSet rs=stmt.executeQuery(query);
@@ -139,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("inALoop : ", "NUMBER.... "+phn+" Email: "+email);
                             if(phn.equals(Number)&&email.equals(Email.toString()))
                             {
+                                editor.putString("PHONE", phn); //InputString: from the EditText
+                                editor.apply();
                                 isSuccess=true;
                             }
                             else

@@ -1,0 +1,5 @@
+configurations.maybeCreate("default")
+
+dependencies {
+}
+artifacts.add("default", file('picasso-2.5.2.jar'))

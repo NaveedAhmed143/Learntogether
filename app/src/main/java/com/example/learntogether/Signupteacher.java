@@ -1,35 +1,50 @@
 package com.example.learntogether;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Signupteacher extends AppCompatActivity {
-
+    private static final int IMG_REQUEST = 1;
     AutoCompleteTextView multiAutoCompleteTextView;
     EditText txtLanguage, txtskypeid ,txtPerhourrate ,txtnationality ,txtLocation ,txtAge ,txtNamee,txtemAil;
     Button signupforteachers;
+    ImageView showpic;
+    Bitmap bitmap;
+    ProgressDialog progressDialog;
    int Gender;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signupteacher);
 
+        progressDialog=new ProgressDialog(this);
+        showpic=(ImageView)findViewById(R.id.showprofilepic);
         txtLanguage=(EditText)findViewById(R.id.Language);
         txtskypeid=(EditText)findViewById(R.id.Language);
         txtLanguage=(EditText)findViewById(R.id.skypeid);
@@ -67,7 +82,6 @@ public class Signupteacher extends AppCompatActivity {
                 if(Gender!=-1){
                     RadioButton selectedRadioButton = (RadioButton) findViewById(Gender);
                     String selectedRadioButtonText = selectedRadioButton.getText().toString();
-                    Toast.makeText(Signupteacher.this, "Are You: "+selectedRadioButtonText, Toast.LENGTH_SHORT).show();
                     Addteachers();
                 }
 
@@ -95,10 +109,11 @@ public class Signupteacher extends AppCompatActivity {
 
     public void Addteachers(){
 
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 String query;
                 String Sex =String.valueOf(Gender);
                 Dbclass connectionClass = new Dbclass();
@@ -115,8 +130,10 @@ public class Signupteacher extends AppCompatActivity {
                 }
                 else
                 {
+                   // Toast.makeText(Signupteacher.this, "Please wait...", Toast.LENGTH_SHORT).show();
 
-                    query = "INSERT INTO teacher (tname,tage,tnationality,tperhourrate,tskypeid,languages,gender,tnumber,tEmail) VALUES(?,?,?,?,?,?,?,?,?)";
+                   bitmap = ((BitmapDrawable) showpic.getDrawable()).getBitmap();
+                    query = "INSERT INTO teacher (tname,tage,tnationality,tperhourrate,tskypeid,languages,gender,tnumber,tEmail,img) VALUES(?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement preparedStatement = null;
                     try{
                         preparedStatement = con.prepareStatement(query);
@@ -129,9 +146,10 @@ public class Signupteacher extends AppCompatActivity {
                         preparedStatement.setString(7, Sex);
                         preparedStatement.setString(8, txtLocation.getText().toString());//Location mean Number.
                         preparedStatement.setString(9, txtemAil.getText().toString());//Location mean Number.
-
+                        preparedStatement.setString(10, imgetostring(bitmap));//profilepic
                         preparedStatement.execute();
-
+                        Intent intent = new Intent(Signupteacher.this,MainActivity.class);
+                        startActivity(intent);
                     }
                     catch (final SQLException e){
                         runOnUiThread(new Runnable() {
@@ -155,4 +173,40 @@ public class Signupteacher extends AppCompatActivity {
         Intent intent = new Intent(this,LoginTeacher.class);
         startActivity(intent);
     }
+    private String imgetostring(Bitmap bitmap) {
+
+        Log.d("c", "imgetostring: ");
+        //  Toast.makeText(this, "In Image to string....", Toast.LENGTH_SHORT).show();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+        //String ss=  Base64.encodeToString(imgBytes, Base64.DEFAULT);
+        return   Base64.encodeToString(imgBytes, Base64.DEFAULT);
+        //Log.d("SS", "imgetostring: "+ss);
+    }
+
+    public void getgallerypic(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMG_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri path = data.getData();
+            try {
+
+                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), path);
+                showpic.setImageBitmap(bitmap);
+                Log.d("img", "onActivityResult: "+bitmap);
+                showpic.setVisibility(View.VISIBLE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

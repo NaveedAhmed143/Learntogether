@@ -9,15 +9,14 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="89dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="Signup For Teachers...."
         android:textColor="#000000"
-        android:textSize="40dp" />
-
+        android:textSize="25dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +42,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
+            android:text="HaiderAli"
             android:gravity="center"
             android:hint="Enter Name" />
 
@@ -75,6 +75,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
+            android:text="55"
             android:gravity="center"
             android:hint="Enter Age"
             android:inputType="number" />
@@ -106,6 +107,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
+            android:text="0311015255"
             android:gravity="center"
             android:hint="Enter Number" />
 
@@ -131,13 +133,14 @@
             android:id="@+id/nationality"
 
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
             android:gravity="center"
+            android:hint="Enter Nationality"
 
-            android:hint="Enter Nationality" />
+            android:text="Pakistani" />
 
     </LinearLayout>
 
@@ -165,6 +168,7 @@
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
             android:gravity="center"
+            android:text="58"
             android:hint="Enter Per_Hour_Rate"
             android:inputType="number" />
 
@@ -194,6 +198,7 @@
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
             android:gravity="center"
+            android:text="navee858"
             android:hint="Your Skype Id" />
 
     </LinearLayout>
@@ -222,6 +227,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
+            android:text="URdu"
             android:gravity="center"
             android:hint="Enter Languages" />
     </LinearLayout>
@@ -250,6 +256,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:fontFamily="cursive"
+            android:text="Nanna@gmail.com"
             android:gravity="center"
             android:hint="Enter Email" />
     </LinearLayout>
@@ -295,6 +302,47 @@
 
         </RadioGroup>
 
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="Profile Picture"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="getgallerypic"
+            android:layout_marginLeft="50dp"
+            android:text="Choose Picture"
+            >
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/showprofilepic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
 

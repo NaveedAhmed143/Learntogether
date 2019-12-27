@@ -2,7 +2,6 @@ package com.example.learntogether;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 public class Dbclass{
 
     String classs = "com.mysql.jdbc.Driver";
-    String dburl = "jdbc:mysql://192.168.100.24:3306/centerofexecellence";
+    String dburl = "jdbc:mysql://192.168.0.105:3306/centerofexecellence";
     String uname = "bilal";
     String password = "bilal1234";
 
@@ -35,6 +34,4 @@ public class Dbclass{
 
         return conn;
     }
-
-
 }

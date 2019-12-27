@@ -14,10 +14,11 @@
         android:gravity="center"
         >
         <TextView
+            android:id="@+id/NAame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
-            android:text="Tutor Invitation"
+            android:hint="Name is "
             />
 
     </LinearLayout>

@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "820491517121",
+    "firebase_url": "https://learntogether-3309a.firebaseio.com",
+    "project_id": "learntogether-3309a",
+    "storage_bucket": "learntogether-3309a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820491517121:android:e38d13fb9370d80db9e840",
+        "android_client_info": {
+          "package_name": "com.example.learntogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820491517121-fik3f2bku1odd31m3ip861qibe3nlsth.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learntogether",
+            "certificate_hash": "18bfdb5093f217218d70b3134c0a68c35f78d6a3"
+          }
+        },
+        {
+          "client_id": "820491517121-rrkqdvos9eo77431829gbil9tllq9qm7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learntogether",
+            "certificate_hash": "b2db7b3470ed38edf815b595f15571d92aa9ed23"
+          }
+        },
+        {
+          "client_id": "820491517121-f27h3tj52sdiui4sc6s7d43ap65ugtkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf5gLNVCuB0ugJ4e9DUf2JQaA7_KVMYSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820491517121-f27h3tj52sdiui4sc6s7d43ap65ugtkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
