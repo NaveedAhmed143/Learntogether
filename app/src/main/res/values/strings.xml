@@ -7,8 +7,9 @@
     <string name="radiofemale">Female</string>
 
     <string-array name="usertype">
-        <item>Tutor</item>
         <item>Student</item>
+        <item>Tutor</item>
+
     </string-array>
 
 

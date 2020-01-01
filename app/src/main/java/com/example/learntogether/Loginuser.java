@@ -82,6 +82,7 @@ public class Loginuser extends AppCompatActivity {
         imgrecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Loginuser.this, "Recomended..here", Toast.LENGTH_SHORT).show();
                 Recommend();
             }
         });
@@ -127,7 +128,7 @@ public class Loginuser extends AppCompatActivity {
         startActivity(intent);
     }
     public void Recommend(){
-        Toast.makeText(this, "Recommended..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "..", Toast.LENGTH_SHORT).show();
         intent = new Intent(this,Recommendation.class);
         startActivity(intent);
     }
@@ -205,7 +206,12 @@ public class Loginuser extends AppCompatActivity {
             else
             {
 
-                Toast.makeText(this, "Failed To Invite Users...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed To Invite Users..." +
+                        " Acces Token Git Hub For Learn Together   1b7d3a559a65528f0c82d68b63bbb7e06a8991a8 " +
+                        "" +
+                        "", Toast.LENGTH_SHORT).show();
+
+
             }
 
 

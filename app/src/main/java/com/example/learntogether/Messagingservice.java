@@ -52,8 +52,13 @@ public class Messagingservice extends FirebaseMessagingService {
 
     public void Notificationshow(String MESG) {
         Log.d("MSGS", "Notificationshow: ");
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, Message.class), 0);
 
+/*
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.journaldev.com/"));
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+*/
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, Message.class), 0);
         Notification notification = new Notification.Builder(this)
                 .setSubText("Hello")
                 .setSmallIcon(R.drawable.stat_name)// the status icon

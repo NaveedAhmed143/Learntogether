@@ -208,7 +208,7 @@ public static final String From_CHANNEL_ID="FROM_CHANNEL_ID";
         {
             // create a new view
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View v = inflater.inflate(R.layout.list_content_for_tutors, parent, false);
+            View v = inflater.inflate(R.layout.listfor_recommendationtutor, parent, false);
             ViewHolder vh = new ViewHolder(v);
             return vh;
         }

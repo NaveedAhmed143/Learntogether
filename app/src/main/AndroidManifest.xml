@@ -21,10 +21,6 @@
         <activity android:name=".Share" />
         <activity android:name=".Classroom" />
         <activity
-            android:name=".Recommendation"
-            android:label="@string/title_activity_recommendation"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Search"
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -33,6 +29,7 @@
         <activity android:name=".Message" />
         <activity android:name=".testclassnotifiaction" />
         <activity android:name=".LoginTeacher" />
+        <activity android:name=".Recommendation" />
         <activity android:name=".Signupteacher" />
         <activity
             android:name=".Signupstudent"

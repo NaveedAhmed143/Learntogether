@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class Dbclass{
 
     String classs = "com.mysql.jdbc.Driver";
-    String dburl = "jdbc:mysql://192.168.0.105:3306/centerofexecellence";
+    String dburl = "jdbc:mysql://192.168.0.104:3306/centerofexecellence";
     String uname = "bilal";
     String password = "bilal1234";
 
