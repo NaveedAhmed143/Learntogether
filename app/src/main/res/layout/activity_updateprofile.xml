@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/logindradient"
     android:layout_height="match_parent"
     tools:context=".Updateprofile">
 
@@ -37,7 +36,7 @@
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="57dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:hint="Update Name"
@@ -69,7 +68,7 @@
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="57dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:inputType="textEmailAddress"
@@ -125,6 +124,7 @@
                 android:fontFamily="cursive"
                 android:text="Skype_ID"
                 android:textColor="#000"
+                android:layout_marginTop="22dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -147,7 +147,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/gradientbutton"
             android:onClick="UpdateuserProfile"
             android:text="Update"
             android:textColor="#0b0b0b" />

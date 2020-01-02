@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:divider="@color/colorAccent"
-    android:showDividers="end"
     tools:context=".Recommendation"
     android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:dividerHeight="2px"
             android:scrollbars="vertical"
+            android:divider="#E61414"
             android:id="@+id/recyclerViewfortutorRecommended"
             />
 

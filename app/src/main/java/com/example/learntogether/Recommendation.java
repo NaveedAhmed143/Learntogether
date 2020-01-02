@@ -96,7 +96,8 @@ public class Recommendation extends AppCompatActivity {
                         while (rs.next())
                         {
                             try {
-                                itemArrayList.add(new RecommendTutorsfromCards(rs.getString("tname"),rs.getString("img"),rs.getString("tnationality")));
+                                itemArrayList.add(new RecommendTutorsfromCards(rs.getString("img"),rs.getString("tname"),rs.getString("tnationality"),
+                                        rs.getString("gender"),rs.getString("languages"),rs.getString("Id"),rs.getString("tperhourrate")));
                             } catch (Exception ex) {
 
                                 ex.printStackTrace();
@@ -215,12 +216,10 @@ public class Recommendation extends AppCompatActivity {
             holder.textnation.setText(recommendTutorsfromCards.getSkypeid());
             holder.imageView.setImageBitmap(recommendTutorsfromCards.getImg());
             //Setting Profile here
-            holder.Gender.setText(recommendTutorsfromCards.getName());
-            holder.Rateperhour.setText(recommendTutorsfromCards.Skypeid);
-            holder.Languages.setText(recommendTutorsfromCards.getName());
-            holder.Teaches.setText(recommendTutorsfromCards.Skypeid);
-
-
+            holder.Gender.setText(recommendTutorsfromCards.getGender());
+            holder.Rateperhour.setText(recommendTutorsfromCards.getRateperhour());
+            holder.Languages.setText(recommendTutorsfromCards.getLanguages());
+            holder.Teaches.setText(recommendTutorsfromCards.getTeaches());
 
 
             Toast.makeText(context, "Postion is : "+position, Toast.LENGTH_SHORT).show();

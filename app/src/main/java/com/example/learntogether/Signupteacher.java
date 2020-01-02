@@ -3,9 +3,6 @@ package com.example.learntogether;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,12 +10,10 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -29,6 +24,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Signupteacher extends AppCompatActivity {
     private static final int IMG_REQUEST = 1;
     AutoCompleteTextView multiAutoCompleteTextView;
@@ -37,6 +34,7 @@ public class Signupteacher extends AppCompatActivity {
     ImageView showpic;
     Bitmap bitmap;
     ProgressDialog progressDialog;
+    String selectedRadioButtonText;
    int Gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +79,9 @@ public class Signupteacher extends AppCompatActivity {
                 Gender= rg.getCheckedRadioButtonId();
                 if(Gender!=-1){
                     RadioButton selectedRadioButton = (RadioButton) findViewById(Gender);
-                    String selectedRadioButtonText = selectedRadioButton.getText().toString();
+
+                     selectedRadioButtonText = selectedRadioButton.getText().toString();
+                    Log.d("SeeGenderhere", "onClick: here is Gender  "+selectedRadioButtonText);
                     Addteachers();
                 }
 
@@ -116,6 +116,7 @@ public class Signupteacher extends AppCompatActivity {
             public void run() {
                 String query;
                 String Sex =String.valueOf(Gender);
+                Log.d("Sex", "run: here is sex"+Sex);
                 Dbclass connectionClass = new Dbclass();
                 Connection con = connectionClass.ConnectToDB();
 
@@ -143,7 +144,7 @@ public class Signupteacher extends AppCompatActivity {
                         preparedStatement.setString(4, txtPerhourrate.getText().toString());
                         preparedStatement.setString(5, txtskypeid.getText().toString());
                         preparedStatement.setString(6, txtLanguage.getText().toString());
-                        preparedStatement.setString(7, Sex);
+                        preparedStatement.setString(7, selectedRadioButtonText);
                         preparedStatement.setString(8, txtLocation.getText().toString());//Location mean Number.
                         preparedStatement.setString(9, txtemAil.getText().toString());//Location mean Number.
                         preparedStatement.setString(10, imgetostring(bitmap));//profilepic
