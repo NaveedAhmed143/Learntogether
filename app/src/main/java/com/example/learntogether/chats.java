@@ -30,67 +30,93 @@ public class chats extends AppCompatActivity {
 
     EditText ed;
     TextView show;
-    String mybal;
+    String mybal, gettingvaluefromchats;
     String Message;
     private DatabaseReference myRef;
     private RecyclerView MrecyclerView;
     private MessageAdapter messageAdapter;
     private List<Messagefromfirebase> mDatalist;
-    String Tutor,Nation,Mobile;
+    String Tutor, Nation, Mobile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
         initialview();
-        ed=(EditText)findViewById(R.id.entervalues);
-       // show=(TextView)findViewById(R.id.shownmae);
-        mDatalist= new ArrayList<>();
+        ed = (EditText) findViewById(R.id.entervalues);
+        gettingvaluefromchats = null;
+        // show=(TextView)findViewById(R.id.shownmae);
+        mDatalist = new ArrayList<>();
 
         MrecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        messageAdapter = new MessageAdapter(this,mDatalist);
+        messageAdapter = new MessageAdapter(this, mDatalist);
         MrecyclerView.setAdapter(messageAdapter);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.FILE_NAME,MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
 
-        Tutor=getIntent().getStringExtra("NNAME");
-         Nation=getIntent().getStringExtra("NN");
+        Tutor = getIntent().getStringExtra("NNAME");
+        gettingvaluefromchats = getIntent().getStringExtra("tutorId");
+        Log.d("SEEINVITEFROM", "onCreate: here is Invite msg " + gettingvaluefromchats);
+        Nation = getIntent().getStringExtra("NN");
         // Mobile=getIntent().getStringExtra("PHONE");
-         Mobile = sharedPreferences.getString("PHONE","");
+        Mobile = sharedPreferences.getString("PHONE", "");
 
 
-        Toast.makeText(this, "Mobiles"+Mobile, Toast.LENGTH_SHORT).show();
-        Log.d("NaveedNumber", "onCreate: "+Mobile);
-      //  show.setText(Mobile);
+        Toast.makeText(this, "Mobiles" + Mobile, Toast.LENGTH_SHORT).show();
+        Log.d("NaveedNumber", "onCreate: " + Mobile);
+        //  show.setText(Mobile);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("UsersChat");
     }
 
     public void sendchatsTofirebase(View view) {
 
-        Message=ed.getText().toString();
-        String currentDateTimeString = DateFormat.getDateInstance().format(new Date());
-        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-        String DatandTime=currentTime+":"+currentDateTimeString;
-        Log.d("TIME", "READDATAFROMDATABASE: "+DatandTime);
-        Log.d("SEEMANE", "HERE IS TIME : "+currentDateTimeString+"\n"+currentTime );
-        String mykey = myRef.push().getKey();
-        Map<String,Object> insertvalues= new HashMap<>();
-        insertvalues.put("Tutor",Tutor);
-        insertvalues.put("Time",DatandTime);
-        insertvalues.put("Message",Message);
-        myRef.child(mykey).setValue(insertvalues);
-        Toast.makeText(this, "Message Sent...", Toast.LENGTH_SHORT).show();
+        if (gettingvaluefromchats == null) {
+            Message = ed.getText().toString();
+            String currentDateTimeString = DateFormat.getDateInstance().format(new Date());
+            String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+            String DatandTime = currentTime + ":" + currentDateTimeString;
+            Log.d("TIME", "READDATAFROMDATABASE: " + DatandTime);
+            Log.d("SEEMANE", "HERE IS TIME : " + currentDateTimeString + "\n" + currentTime);
+            String mykey = myRef.push().getKey();
+            Map<String, Object> insertvalues = new HashMap<>();
+            insertvalues.put("Tutor", Tutor);
+            insertvalues.put("Time", DatandTime);
+            insertvalues.put("Message", Message);
+            myRef.child(mykey).setValue(insertvalues);
+            Toast.makeText(this, "Message Sent...", Toast.LENGTH_SHORT).show();
       /*  myRef.child(mykey).child("Tutor").setValue(Name);
         myRef.child(mykey).child("Time").setValue(DatandTime);
         myRef.child(mykey).child("Message").setValue(Chtmesg);
-        */ed.getText().clear();
-        ReadFormDAtaBase();
+        */
+            ed.getText().clear();
+            ReadFormDAtaBase();
+        } else {
+            SendmsgtoinviteTutor();
+        }
 
     }
-    public void ReadFormDAtaBase()
-    {
-        Messagefromfirebase messagesfromfire= new Messagefromfirebase(Message,Tutor);
+
+    public void SendmsgtoinviteTutor() {
+        Message = ed.getText().toString();
+        String currentDateTimeString = DateFormat.getDateInstance().format(new Date());
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String DatandTime = currentTime + ":" + currentDateTimeString;
+        Log.d("TIME", "READDATAFROMDATABASE: " + DatandTime);
+        Log.d("SEEMANE", "HERE IS TIME : " + currentDateTimeString + "\n" + currentTime);
+        String mykey = myRef.push().getKey();
+        Map<String, Object> insertvalues = new HashMap<>();
+        insertvalues.put("Tutor", gettingvaluefromchats);
+        insertvalues.put("Time", DatandTime);
+        insertvalues.put("Message", Message);
+        myRef.child(mykey).setValue(insertvalues);
+        ed.getText().clear();
+        ReadFormDAtaBase();
+    }
+
+    public void ReadFormDAtaBase() {
+        Messagefromfirebase messagesfromfire = new Messagefromfirebase(Message, Tutor);
         
 
 
@@ -112,7 +138,8 @@ public class chats extends AppCompatActivity {
         });*/
 
     }
-    public void initialview(){
-        MrecyclerView=findViewById(R.id.messages_view);
+
+    public void initialview() {
+        MrecyclerView = findViewById(R.id.messages_view);
     }
 }
